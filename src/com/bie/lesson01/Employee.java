@@ -42,6 +42,11 @@ public class Employee {
 	public void setEmployeePhone(String employeePhone) {
 		this.employeePhone = employeePhone;
 	}
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeePassword="
+				+ employeePassword + ", employeeEmail=" + employeeEmail + ", employeePhone=" + employeePhone + "]";
+	}
 	
 	
 	
