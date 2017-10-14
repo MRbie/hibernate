@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+	上面直接配置package，则下面就不用配置了
+	主要功能:指定对象与表，字段与属性。数据表的类型就采用实体类的类型。	
+-->
+<hibernate-mapping package="com.bie.lesson01">
+	<!-- 
+		上面那个包下，这个类的名称 
+		table是数据库的表的名称
+		name是实体类的名称	
+	-->
+	<class name="Employee" table="employee">
+		<!--
+			主键映射 
+			主键的名称 name是实体类的名称，column是数据表的字段
+		-->
+		<id name="employeeId" column="employeeId">
+			<!-- 主键自增的 -->
+			<generator class="native"></generator>
+		</id>
+		
+		<!-- 非主键映射 -->
+		<property name="employeeName" column="employeeName"></property>
+		<property name="employeePassword" column="employeePassword"></property>
+		<property name="employeeEmail" column="employeeEmail"></property>
+		<property name="employeePhone" column="employeePhone"></property>
+		
+	</class>
+
+
+</hibernate-mapping>

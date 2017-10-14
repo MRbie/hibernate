@@ -1,0 +1,25 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- hibernate的配置 -->
+<hibernate-configuration>
+	<session-factory>
+		<!-- 数据库连接配置 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///test</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">123456</property>
+		<!-- 
+			指定数据库的方言 
+			ctrl+shift+t 搜索MySQL5Dialect/MySQLDialect
+		-->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+	
+		<!-- 显示执行的sql语句 -->
+		<property name="hibernate.show_sql">true</property>
+	
+		<!-- 加载所有的映射 -->
+		<mapping resource="com/bie/lesson01/employee.hbm.xml"/>
+	</session-factory>
+	
+</hibernate-configuration>
