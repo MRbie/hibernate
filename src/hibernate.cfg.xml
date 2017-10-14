@@ -19,7 +19,10 @@
 		<property name="hibernate.show_sql">true</property>
 	
 		<!-- 加载所有的映射 -->
-		<mapping resource="com/bie/lesson01/employee.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson01/employee.hbm.xml"/> -->
+		
+		<mapping resource="com/bie/lesson02/crud/po/employee.hbm.xml"/>
+		
 	</session-factory>
 	
 </hibernate-configuration>
