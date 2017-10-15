@@ -11,7 +11,9 @@
 	
 	<class name="User">
 		<!-- 
-			复合主键映射 
+			复合主键映射
+				name=key是复合主键的实体类的new的对象
+				name=name和name=Number是复合主键的名称 
 		-->
 		<composite-id name="key">
 			<key-property name="name" type="string"></key-property>
