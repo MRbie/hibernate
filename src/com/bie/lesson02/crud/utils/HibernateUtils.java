@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.bie.lesson02.crud.po.Employee;
+
 
 /** 
 * @author  Author:别先生 
@@ -13,10 +15,15 @@ import org.hibernate.cfg.Configuration;
 */
 public class HibernateUtils {
 
+	//加载映射文件的两种方式：<mapping resource="com/bie/lesson02/crud/po/employee.hbm.xml"/>
+	
 	private static SessionFactory sf;
 	static{
 		//加载主配置文件，并且创建session工厂
-		sf = new Configuration().configure().buildSessionFactory();
+		sf = new Configuration()
+				.configure()
+				//.addClass(Employee.class)//便于测试,会自动加载映射文件:employee.hbm.xml
+				.buildSessionFactory();
 	}
 	
 	//获取到session,创建session对象
