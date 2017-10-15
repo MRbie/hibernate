@@ -59,8 +59,9 @@
 		<!-- 加载所有的映射 -->
 		<!-- <mapping resource="com/bie/lesson01/employee.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson02/crud/po/employee.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson02/crud/po/employee.hbm.xml"/> -->
 		
+		<mapping resource="com/bie/lesson03/User.hbm.xml"/>
 	</session-factory>
 	
 </hibernate-configuration>

@@ -41,6 +41,18 @@
 		-->
 		<id name="employeeId" column="employeeId">
 			<!-- 主键自增的 -->
+			<!-- 
+				主键生成策略，查看5.1.2.2.1.apiVarious additional generators
+					*identify:自增长(mysql,db2)
+					*native:自增长，会根据底层数据库自增长的方式选择identify或者sequence；
+						如果是mysql数据库，采用的是自增长方式是identify;
+						如果是oracle数据库，使用sequence序列的方式实现自增长；
+					*sequence:自增长(序列)，oracle中自增长是以序列方式实现的。
+					increment:了解，自增长，会有并发访问的问题，一般在服务器集群环境使用会存在问题；
+					assigned指定主键生成策略为手动指定主键的值
+					uuid:指定uuid随机生成的序列号，唯一的值，为主键，uuid为string类型的
+					foreign:外键的方式，one-to-one方式；
+			 -->
 			<generator class="native"></generator>
 		</id>
 		

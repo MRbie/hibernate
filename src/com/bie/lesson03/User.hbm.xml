@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+	上面直接配置package，则下面就不用配置了
+	主要功能:指定对象与表，字段与属性。数据表的类型就采用实体类的类型。	
+-->
+<hibernate-mapping package="com.bie.lesson03">
+	
+	<class name="User">
+		<!-- 
+			复合主键映射 
+		-->
+		<composite-id name="key">
+			<key-property name="name" type="string"></key-property>
+			<key-property name="Number" type="string"></key-property>
+		</composite-id>
+		
+		<!-- 非主键映射 -->
+		<property name="id"></property>
+	</class>
+
+</hibernate-mapping>
