@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+	上面直接配置package，则下面就不用配置了
+	主要功能:指定对象与表，字段与属性。数据表的类型就采用实体类的类型。	
+-->
+<!-- 第一部分：映射文件：映射一个实体类对象,用来描述一个对象最终实现可以直接保存对象数据到数据库中
+    	package(可选)：要映射的对象即实体类所在的包，如果不指定package,那么下面所有的类都要指定全路径 
+		auto-import="true":默认为true,在写hql的时候自动导入包名，如果指定为false,再写
+			hql查询语句的时候需要写上类的全名；
+			如：session.createQuery(from com.bie.po.Employee).list();
+
+-->
+<hibernate-mapping package="com.bie.lesson02.crud.po" auto-import="true">
+	<!-- 
+		上面那个包下，这个类的名称 
+		table是数据库的表的名称
+		name是实体类的名称	
+	-->
+	<!-- 第二部分：
+        (1):class:映射某一个对象的(一般情况下，一个对象写一个映射文件，即一个class节点)； 
+              name:指定要映射的对象的类型，实体类名称；
+              table:对象对应的表，指定要映射的表，即表名称；
+        (2):主键映射：id
+        (3):普通字段映射：property
+            name:指定对象的属性名称；
+            column:指定对象属性对应的表的字段名称，如果不写默认与对象属性一致 ；    
+            length:用于指定字符类型长度，比如字符串类型varchar(20)，默认长度255；
+            type:用于指定表的字段的类型，如果不指定，会匹配属性的类型，包含两种类型；
+                java类型:必须写全名，比如java.lang.String，java.util.Date
+                hibernate类型:比如string，date，都是小写,不能写String(不能首字母大写)
+                注意：desc关键字，可以使用``(shift+~)反引号或者改列名
+    -->
+	<class name="Employee" table="employee">
+		<!--
+			主键映射 
+			主键的名称 name是实体类的名称，column是数据表的字段
+		-->
+		<id name="employeeId" column="employeeId">
+			<!-- 主键自增的 -->
+			<generator class="native"></generator>
+		</id>
+		
+		<!-- 
+			非主键映射，普通字段的映射
+			name:字段的属性名称,其他字段可以不写；
+			column:对应的数据表的字段名称；
+			length:自定字符类型的长度，只能指定字符类型的，如果不指定，默认为255；
+			type:指定数据表的字段的类型，如果不指定会匹配属性的类型:
+				java类型:必须写全名，如java.lang.String；
+				hibernate类型:string类型；直接写类型，都是小写
+				如果列名称为数据库关键字，如下:
+				注意：desc关键字，可以使用`desc`(不是shift+~是直接~键)反引号或者改列名
+		 -->
+		<property name="employeeName" column="employeeName"></property>
+		<property name="employeePassword" column="employeePassword"></property>
+		<property name="employeeEmail" column="employeeEmail"></property>
+		<property name="employeePhone" column="employeePhone"></property>
+		
+	</class>
+
+
+</hibernate-mapping>
