@@ -1,23 +1,61 @@
 <!DOCTYPE hibernate-configuration PUBLIC
 	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-<!-- hibernate的配置 -->
+<!-- 
+	hibernate的配置 
+	1.1：主配置文件主要分为三部分：
+　　　　注意：通常情况下，一个session-factory节点代表一个数据库；
+　　　　1.1.1：第一部分
+　　　　　　　数据库连接部分，注意"hibernate.connection.driver_class"中间的 _(杠)；
+　　　　1.1.2：第二部分
+　　　　　　　其他相关配置，包含打印sql语句，格式化sql语句，创建数据表或者更新数据表等等
+　　　　1.1.3：第三部分
+　　　　　　　加载所有的映射；
+-->
 <hibernate-configuration>
+	
+	<!-- 通常，一个session-factory节点代表一个数据库 -->
 	<session-factory>
-		<!-- 数据库连接配置 -->
+		<!-- 1:第一部分，数据库连接配置 -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql:///test</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">123456</property>
+		
+		<!-- 2:第二部分,其他相关配置 -->
 		<!-- 
-			指定数据库的方言 
-			ctrl+shift+t 搜索MySQL5Dialect/MySQLDialect
+			2.1:指定数据库的方言 
+				ctrl+shift+t 搜索MySQL5Dialect/MySQLDialect
+				hibernate在运行的时候，会根据不同的方言生成符合当前数据库语法的sql
 		-->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 	
-		<!-- 显示执行的sql语句 -->
+		<!-- 
+			2.2:显示执行的sql语句 
+				hibernate.show_sql显示hibernate运行时候执行的sql语句
+		-->
 		<property name="hibernate.show_sql">true</property>
 	
+		<!-- 2.3:格式化sql语句 -->
+		<property name="hibernate.format_sql">true</property>
+	
+		<!-- 2.4:自动建表 -->
+		<!-- hibernate.properties的364行，搜索hbm2ddl -->
+		 <!-- 
+                                 每次在创建sessionFactory时执行创建表，当调用sessionFactory的close方法的时候，删除表
+             	#hibernate.hbm2ddl.auto create-drop
+                                 每次都重新建表，如果已经存在就先删除再创建
+             	#hibernate.hbm2ddl.auto create
+                                 如果表不存在就创建，表存在就不创建
+             	#hibernate.hbm2ddl.auto update
+                                生成环境时候执行验证，当映射文件的内容与数据库表结构不一样的时候就报错
+             	#hibernate.hbm2ddl.auto validate
+          --> 
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
+		
+		
+		<!-- 3:第三部门，加载映射文件 -->
 		<!-- 加载所有的映射 -->
 		<!-- <mapping resource="com/bie/lesson01/employee.hbm.xml"/> -->
 		
