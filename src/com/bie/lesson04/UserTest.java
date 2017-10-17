@@ -83,4 +83,28 @@ public class UserTest {
 		//关闭session
 		HibernateUtils.closeSession();
 	}
+	
+	
+	@Test
+	public void testGetList(){
+		//获取到session
+		Session sesion = HibernateUtils.getSesion();
+		//开启事务
+		sesion.beginTransaction();
+		
+		//查询
+		//及时加载
+		User user = (User) sesion.get(User.class, 2);
+		System.out.println(user.getUserId());
+		System.out.println(user.getUserName());
+		//当查询用户，同时可以获取用户关联的list集合的数据，因为有正确的映射
+		//当使用到集合的时候，才向数据库发送执行的sql语句(懒加载)
+		System.out.println(user.getAddressList());
+		
+		//提交事务
+		sesion.getTransaction().commit();
+		//关闭session
+		HibernateUtils.closeSession();
+	}
+	
 }
