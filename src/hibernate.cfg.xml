@@ -61,7 +61,9 @@
 		
 		<!-- <mapping resource="com/bie/lesson02/crud/po/employee.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson03/User.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson03/User.hbm.xml"/> -->
+		
+		<mapping resource="com/bie/lesson04/User.hbm.xml"/>
 	</session-factory>
 	
 </hibernate-configuration>

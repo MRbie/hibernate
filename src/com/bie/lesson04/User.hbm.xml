@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 实体类和数据表得映射配置文件 -->
+<hibernate-mapping package="com.bie.lesson04">
+	<!-- 用户的实体类和数据表的对应 -->
+	<class name="User" table="tb_user">
+		<!-- 主键映射 -->
+		<id name="userId" column="userId">
+			<!-- 主键自增 -->
+			<generator class="native"></generator>
+		</id>
+		
+		<!-- 非主键映射 -->
+		<property name="userName" column="userName"></property>
+		
+		 <!-- 
+            set集合属性的映射：重点消化
+                name指定要映射的set集合的属性
+                table集合属性要映射的表
+            key指定集合表(t_address)的外键字段
+            element指定集合表的其他字段
+                type元素类型，一定要指定(element的属性)
+         -->
+         <set name="address" table="tb_address">
+         	<key column="userId"></key>
+         	<element column="address" type="string"></element>
+         </set>
+         
+	</class>
+
+</hibernate-mapping>
