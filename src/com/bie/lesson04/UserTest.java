@@ -40,5 +40,47 @@ public class UserTest {
 		HibernateUtils.closeSession();
 	}
 
+	@Test
+	public void testList(){
+		//获取到session
+		Session sesion = HibernateUtils.getSesion();
+		//开启事务
+		sesion.beginTransaction();
+		
+
+		User user = new User();
+		user.setUserName("别宏利2");
+		user.getAddressList().add("郑州2");
+		user.getAddressList().add("北京2");
+		
+		//保存
+		sesion.save(user);
+		
+		//提交事务
+		sesion.getTransaction().commit();
+		//关闭session
+		HibernateUtils.closeSession();
+	}
 	
+	@Test
+	public void testMap(){
+		//获取到session
+		Session sesion = HibernateUtils.getSesion();
+		//开启事务
+		sesion.beginTransaction();
+		
+
+		User user = new User();
+		user.setUserName("别宏利3");
+		user.getAddressMap().put("北京3", "北京市3");
+		user.getAddressMap().put("上海3", "上海市3");
+		
+		//保存
+		sesion.save(user);
+		
+		//提交事务
+		sesion.getTransaction().commit();
+		//关闭session
+		HibernateUtils.closeSession();
+	}
 }
