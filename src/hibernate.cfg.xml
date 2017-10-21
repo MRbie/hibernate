@@ -63,7 +63,12 @@
 		
 		<!-- <mapping resource="com/bie/lesson03/User.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson04/User.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson04/User.hbm.xml"/> -->
+		
+		<mapping resource="com/bie/lesson05/Dept.hbm.xml"/>
+		<mapping resource="com/bie/lesson05/Employee.hbm.xml"/>
+		
+		
 	</session-factory>
 	
 </hibernate-configuration>
