@@ -14,6 +14,7 @@ import com.bie.lesson02.crud.utils.HibernateUtils;
 */
 public class TestReallyManyToMany {
 
+	//多对多关系映射，只能通过一方维护另一方，不能重复维护
 	@Test
 	public void testManyToMany(){
 		Session session = HibernateUtils.getSesion();
