@@ -37,7 +37,7 @@
 		<property name="hibernate.show_sql">true</property>
 	
 		<!-- 2.3:格式化sql语句 -->
-		<property name="hibernate.format_sql">true</property>
+		<!-- <property name="hibernate.format_sql">true</property> -->
 	
 		<!-- 2.4:自动建表 -->
 		<!-- hibernate.properties的364行，搜索hbm2ddl -->
@@ -65,9 +65,11 @@
 		
 		<!-- <mapping resource="com/bie/lesson04/User.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson05/Dept.hbm.xml"/>
-		<mapping resource="com/bie/lesson05/Employee.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson05/Dept.hbm.xml"/>
+		<mapping resource="com/bie/lesson05/Employee.hbm.xml"/> -->
 		
+		<mapping resource="com/bie/lesson06/Developer.hbm.xml"/>
+		<mapping resource="com/bie/lesson06/Project.hbm.xml"/>
 		
 	</session-factory>
 	
