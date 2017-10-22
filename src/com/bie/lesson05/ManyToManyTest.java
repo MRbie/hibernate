@@ -9,8 +9,13 @@ import com.bie.lesson02.crud.utils.HibernateUtils;
 /** 
 * @author  Author:别先生 
 * @date Date:2017年10月21日 下午3:49:38 
-*
-*
+* 
+* 1：总结：在一对多与多对一的关联关系中，保存数据最好的是通过多的一方来维护关系，这样可以减少
+* uodate语句的生成，从而提交hibernate的执行效率。
+* 
+* 2：配置一对多与多对一，这种叫做双向关联，或者叫做双向多对一或者一对多。
+* 如果只配置一对多，这种叫做单向一对多。如果只配置多对一，这种叫做单向多对一。
+* 注意：配置那一方，那一方才拥有维护关联关系的权限。
 */
 public class ManyToManyTest {
 
@@ -87,6 +92,31 @@ public class ManyToManyTest {
 		session.save(dept);//保存部门，部门下的所有员工
 		session.save(employee1);
 		session.save(employee2);
+		
+		//提交事务
+		tx.commit();
+		//关闭session
+		HibernateUtils.closeSession();
+	}
+	
+	//获取数据
+	//配置那一方，就通过那一方进行操作
+	@Test
+	public void getMessage(){
+		Session session = HibernateUtils.getSesion();
+		//开启事务
+		Transaction tx = session.beginTransaction();
+		
+		//通过部门方获取另外一方
+		Dept dept = (Dept) session.get(Dept.class, 1);
+		System.out.println(dept.getDeptName());
+		//懒加载，使用的时候再查询。
+		//System.out.println(dept.getEmps());
+		
+		//通过员工方，获取部门方
+		Employee employee = (Employee) session.get(Employee.class, 1);
+		System.out.println(employee.getEmpName());
+		System.out.println(employee.getDept().getDeptName());
 		
 		//提交事务
 		tx.commit();

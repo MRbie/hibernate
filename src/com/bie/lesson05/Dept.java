@@ -1,5 +1,6 @@
 package com.bie.lesson05;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,8 +10,12 @@ import java.util.Set;
 * 部门的实体类
 *	关键点，是通过部门实体类维护到员工的实体类
 */
-public class Dept {
+public class Dept implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int deptId;//部门编号
 	private String deptName;//部门名称
 	//【一对多】部门与员工的对应关系，一个部门对应多个员工
@@ -32,6 +37,10 @@ public class Dept {
 	}
 	public void setEmps(Set<Employee> emps) {
 		this.emps = emps;
+	}
+	@Override
+	public String toString() {
+		return "Dept [deptId=" + deptId + ", deptName=" + deptName + ", emps=" + emps + "]";
 	}
 	
 	
