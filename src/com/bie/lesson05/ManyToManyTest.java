@@ -1,5 +1,7 @@
 package com.bie.lesson05;
 
+import java.util.Set;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
@@ -28,16 +30,16 @@ public class ManyToManyTest {
 		
 		//部门信息
 		Dept dept = new Dept();
-		dept.setDeptName("开发部");
+		dept.setDeptName("22部");
 		
 		
 		//员工信息
 		Employee employee1 = new Employee();
-		employee1.setEmpName("张三");
+		employee1.setEmpName("张三三");
 		employee1.setSalary(3000);
 		
 		Employee employee2 = new Employee();
-		employee2.setEmpName("李四");
+		employee2.setEmpName("李四四");
 		employee2.setSalary(4000);
 		
 		//处理部门和员工之间的关系
@@ -65,16 +67,16 @@ public class ManyToManyTest {
 		
 		//部门信息
 		Dept dept = new Dept();
-		dept.setDeptName("资源部");
+		dept.setDeptName("测试部");
 		
 		
 		//员工信息
 		Employee employee1 = new Employee();
-		employee1.setEmpName("张三2");
+		employee1.setEmpName("张三3");
 		employee1.setSalary(3000);
 		
 		Employee employee2 = new Employee();
-		employee2.setEmpName("李四2");
+		employee2.setEmpName("李四3");
 		employee2.setSalary(4000);
 		
 		//处理部门和员工之间的关系
@@ -108,15 +110,58 @@ public class ManyToManyTest {
 		Transaction tx = session.beginTransaction();
 		
 		//通过部门方获取另外一方
-		Dept dept = (Dept) session.get(Dept.class, 1);
+		Dept dept = (Dept) session.get(Dept.class, 2);
 		System.out.println(dept.getDeptName());
 		//懒加载，使用的时候再查询。
-		//System.out.println(dept.getEmps());
+		Set<Employee> emps = dept.getEmps();
+		System.out.println(emps);
 		
 		//通过员工方，获取部门方
 		Employee employee = (Employee) session.get(Employee.class, 1);
 		System.out.println(employee.getEmpName());
 		System.out.println(employee.getDept().getDeptName());
+		
+		//提交事务
+		tx.commit();
+		//关闭session
+		HibernateUtils.closeSession();
+	}
+	
+	//inverse控制反转对解除关联关系的影响
+	@Test
+	public void inverseTest(){
+		Session session = HibernateUtils.getSesion();
+		//开启事务
+		Transaction tx = session.beginTransaction();
+		
+		//通过部门方获取另外一方
+		Dept dept = (Dept) session.get(Dept.class, 1);
+		//解除关联关系
+		//如果有控制权可以解除关联关系，没有控制权不可以解除关联关系。
+		dept.getEmps().clear();
+		//System.out.println(dept.getDeptName());
+		
+		
+		//提交事务
+		tx.commit();
+		//关闭session
+		HibernateUtils.closeSession();
+	}
+	
+	//inverse控制反转对删除数据的影响
+	//是否设置inverse属性，在删除数据中对关联关系的影响？
+	@Test
+	public void deleteTest(){
+		Session session = HibernateUtils.getSesion();
+		//开启事务
+		Transaction tx = session.beginTransaction();
+		
+		//直接使用主键删除不可以，因为存在外键引用
+		//所以先查询出来再删除操作。
+		Dept dept = (Dept) session.get(Dept.class, 1);
+		
+		//删除数据
+		session.delete(dept);
 		
 		//提交事务
 		tx.commit();

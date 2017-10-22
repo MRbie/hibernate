@@ -38,10 +38,6 @@ public class Dept implements Serializable{
 	public void setEmps(Set<Employee> emps) {
 		this.emps = emps;
 	}
-	@Override
-	public String toString() {
-		return "Dept [deptId=" + deptId + ", deptName=" + deptName + ", emps=" + emps + "]";
-	}
 	
 	
 }
