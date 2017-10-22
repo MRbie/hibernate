@@ -42,7 +42,16 @@
 		 			没有控制权，如果删除的记录有被外键引用，会报错，违反主外键应用约束。
 		 					  如果删除的记录没有被引用，可以直接删除。
 		  -->
-		 <set name="emps" table="20171021_employee" inverse="false">
+		  <!-- 
+		  	cascade属性
+		  		cascade表示级联操作，可以设置到一的一方或者多的一方。
+		  		none:不级联操作，默认值
+		  		save-update:级联或者或则更新
+		  		delete:级联删除
+		  		save-update,delete:级联保存，更新，删除
+		  		all:级联保存，更新，删除
+		   -->
+		 <set name="emps" cascade="delete" inverse="false" table="20171021_employee">
 		 	<!-- 集合表的外键字段 -->
 		 	<key column="deptId"></key>
 		 	<!-- 集合元素的类型 class=com.bie.lesson05.Employee-->

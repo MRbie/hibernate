@@ -168,4 +168,60 @@ public class ManyToManyTest {
 		//关闭session
 		HibernateUtils.closeSession();
 	}
+	
+	
+	//保存，部门方，一的一方维护
+	@Test
+	public void cascadeTest(){
+		Session session = HibernateUtils.getSesion();
+		//开启事务
+		Transaction tx = session.beginTransaction();
+		
+		//部门信息
+		Dept dept = new Dept();
+		dept.setDeptName("帝王部");
+		
+		//员工信息
+		Employee employee1 = new Employee();
+		employee1.setEmpName("李白");
+		employee1.setSalary(3000);
+		
+		Employee employee2 = new Employee();
+		employee2.setEmpName("刘备");
+		employee2.setSalary(4000);
+		
+		//处理部门和员工之间的关系
+		dept.getEmps().add(employee1);
+		dept.getEmps().add(employee2);
+		
+		//保存操作
+		//session.save(employee1);
+		//session.save(employee2);
+		session.save(dept);//保存部门，部门下的所有员工
+		
+		//提交事务
+		tx.commit();
+		//关闭session
+		HibernateUtils.closeSession();
+	}
+	
+	
+	//保存，部门方，一的一方维护
+	@Test
+	public void cascadeDeleteTest(){
+		Session session = HibernateUtils.getSesion();
+		//开启事务
+		Transaction tx = session.beginTransaction();
+		
+		Dept dept = (Dept)session.get(Dept.class, 3);
+		
+		//删除，级联删除
+		session.delete(dept);
+		
+		//提交事务
+		tx.commit();
+		//关闭session
+		HibernateUtils.closeSession();
+	}
+		
 }
