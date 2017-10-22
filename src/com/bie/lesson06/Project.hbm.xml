@@ -19,7 +19,21 @@
 				4：外间字段，对应的中间表的字段：developerId
 				5：集合属性元素的类型：
 		 -->
-		 <set name="developer" table="20171022_relation">
+		 <!-- 
+			设置inverse属性，在多对多映射维护关联关系的影响？
+				(1)保存数据:多对多，设置inverse属性，对保存数据有影响。
+					inverse=false,有控制权，可以维护关联关系，保存数据的时候会把对象关系插入中间表。
+					inverse=true,没有控制权，不会往中间表插入数据。
+				(2)获取数据:无影响。
+				(3)解除关系:有影响
+					inverse=false,有控制权，可以解除关系，解除关系就是删除中间表的数据。
+					inverse=true,没有控制权，不能解除关系。
+				(4)删除数据:
+					inverse=false,有控制权，先删除中间表数据，再删除自身。
+					inverse=true,没有控制权。如果删除的数据有被引用，会报错，否则如果删除的数据
+						没有被引用，可以删除。
+		 -->
+		 <set name="developer" inverse="false" table="20171022_relation">
 		 	<key column="projectId"></key>
 		 	<many-to-many column="developerId" class="Developer"></many-to-many>
 		 </set>
