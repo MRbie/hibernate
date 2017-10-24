@@ -57,7 +57,7 @@
 		
 		<!-- 3:第三部门，加载映射文件 -->
 		<!-- 加载所有的映射 -->
-		<!-- <mapping resource="com/bie/lesson01/employee.hbm.xml"/> -->
+		<mapping resource="com/bie/lesson01/employee.hbm.xml"/>
 		
 		<!-- <mapping resource="com/bie/lesson02/crud/po/employee.hbm.xml"/> -->
 		
@@ -68,8 +68,8 @@
 		<!-- <mapping resource="com/bie/lesson05/Dept.hbm.xml"/>
 		<mapping resource="com/bie/lesson05/Employee.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson06/Developer.hbm.xml"/>
-		<mapping resource="com/bie/lesson06/Project.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson06/Developer.hbm.xml"/>
+		<mapping resource="com/bie/lesson06/Project.hbm.xml"/> -->
 		
 	</session-factory>
 	
