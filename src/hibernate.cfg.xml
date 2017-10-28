@@ -81,7 +81,10 @@
 		
 		<!-- <mapping resource="com/bie/lesson10/extend01/Cat.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson10/extend02/Animal.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson10/extend02/Animal.hbm.xml"/> -->
+		
+		<mapping resource="com/bie/lesson10/extend03/Animal.hbm.xml"/>
+		
 	</session-factory>
 	
 </hibernate-configuration>

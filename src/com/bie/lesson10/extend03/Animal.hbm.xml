@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+2：每个类映射到一张表(3张表)
+	继承映射，每个类对应一个表，父类也对应一张表
+-->
+ 
+<!-- 继承映射 -->
+<hibernate-mapping package="com.bie.lesson10.extend03">
+	<class name="Animal" table="20171028_animal03">
+		<!-- 简单继承映射，父类属性直接写 -->
+		<id name="animalId" column="animalId">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="animalName" column="animalName"></property>
+		
+	
+	
+		<!-- 
+			子类的属性，每个字段都用subClass节点映射
+		 -->
+		<!-- 
+			猫的字段
+				animalId动物表的外键
+		-->
+		<joined-subclass name="Cat" table="20171028_cat03">
+			<key column="animalId"></key>
+			<property name="catchMouse"></property>
+		</joined-subclass>
+		
+		
+		<!-- 猴子的字段 -->
+		<joined-subclass name="Monkey" table="20171028_monkey03">
+			<key column="animalId"></key>
+			<property name="eatBanana"></property>
+		</joined-subclass>
+
+	</class>
+</hibernate-mapping>
+
+	
