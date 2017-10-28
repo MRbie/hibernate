@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.bie.lesson07">
+	<class name="IdCard" table="20171028_idcard">
+		<id name="cardNumber" column="cardNumber">
+			<!-- 身份证号码做主键，手动指定 -->
+			<generator class="assigned"></generator>
+		</id>
+		
+		<property name="place" column="place" length="20"></property>
+		
+		<!-- 用户和身份证之间的对应关系 -->
+		<!-- 
+			一对一映射:由外键方userId
+				特殊的多对一,只是加了唯一约束,unique="true"
+		 -->
+		 <many-to-one cascade="save-update" unique="true" name="user" column="userId" class="User"></many-to-one>
+		 
+	</class>
+
+
+</hibernate-mapping>

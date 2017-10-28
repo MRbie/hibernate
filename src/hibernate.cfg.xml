@@ -65,11 +65,14 @@
 		
 		<!-- <mapping resource="com/bie/lesson04/User.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson05/Dept.hbm.xml"/>
-		<mapping resource="com/bie/lesson05/Employee.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson05/Dept.hbm.xml"/>
+		<mapping resource="com/bie/lesson05/Employee.hbm.xml"/> -->
 		
 		<!-- <mapping resource="com/bie/lesson06/Developer.hbm.xml"/>
 		<mapping resource="com/bie/lesson06/Project.hbm.xml"/> -->
+		
+		<mapping resource="com/bie/lesson07/IdCard.hbm.xml"/>
+		<mapping resource="com/bie/lesson07/User.hbm.xml"/>
 		
 	</session-factory>
 	
