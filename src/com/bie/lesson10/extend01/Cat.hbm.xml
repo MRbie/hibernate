@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 继承映射 -->
+<hibernate-mapping package="com.bie.lesson10.extend01">
+	<class name="Cat" table="20171028_cat">
+		<!-- 简单继承映射，父类属性直接写 -->
+		<id name="animalId" column="animalId">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="animalName" column="animalName"></property>
+		<!-- 子类的属性 -->
+		<property name="catchMouse" column="catchMouse"></property>
+		
+	</class>
+
+
+</hibernate-mapping>
+
+	
