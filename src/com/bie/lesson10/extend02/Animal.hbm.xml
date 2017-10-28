@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+1：所有子类映射到一张表(1张表)，不推荐使用。
+	什么情况下用？
+		答：子类较多，且子类较为简单，即只有个别属性。
+			好处:因为使用了一个映射文件，减少了映射文件的个数。
+			(如何区分是哪一个子类的信息。)
+			总结：写法较为简单，所有子类用一个映射文件，且映射到一张表。但是数据库设计不合理
+
+-->
+ 
+<!-- 继承映射 -->
+<hibernate-mapping package="com.bie.lesson10.extend02">
+	<class name="Animal" table="20171028_animal02">
+		<!-- 简单继承映射，父类属性直接写 -->
+		<id name="animalId" column="animalId">
+			<generator class="native"></generator>
+		</id>
+		
+		<!-- 指定鉴别器字段 -->
+		<discriminator column="type_"></discriminator>
+		
+		<property name="animalName" column="animalName"></property>
+		
+	
+	
+		<!-- 
+			子类的属性，每个字段都用subClass节点映射
+				1：注意：一定要指定鉴别器字段，否则报错。
+				2：鉴别器字段，作用是在数据库中区别每一个子类的信息，其实就是一个列。
+					discriminator-value="cat_"指定鉴别器字段，即type_字段的值。
+					如果不指定，默认为当前子类的全名称。
+		 -->
+		<!-- 猫的字段-->
+		<subclass name="Cat" discriminator-value="cat_">
+			<property name="catchMouse" column="catchMouse"></property>
+		</subclass>
+		
+		
+		<!-- 猴子的字段 -->
+		<subclass name="Monkey" discriminator-value="monkey_">
+			<property name="eatBanana" column="eatBanana"></property>
+		</subclass>
+
+	</class>
+</hibernate-mapping>
+
+	
