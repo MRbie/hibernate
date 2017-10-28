@@ -74,9 +74,10 @@
 		<!-- <mapping resource="com/bie/lesson07/IdCard.hbm.xml"/>
 		<mapping resource="com/bie/lesson07/User.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson08/IdCard.hbm.xml"/>
-		<mapping resource="com/bie/lesson08/User.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson08/IdCard.hbm.xml"/>
+		<mapping resource="com/bie/lesson08/User.hbm.xml"/> -->
 		
+		<mapping resource="com/bie/lesson09/Car.hbm.xml"/>
 	</session-factory>
 	
 </hibernate-configuration>

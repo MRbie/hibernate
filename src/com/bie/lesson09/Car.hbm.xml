@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 组件映射 -->
+<hibernate-mapping package="com.bie.lesson09">
+	<class name="Car" table="20171028_car">
+		<id name="carId" column="carId">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="carName" column="carName"></property>
+		
+		<!-- 组件映射 -->
+		<component name="wheel">
+			<property name="count" column="count"></property>
+			<property name="size" column="size"></property>
+
+		</component>
+	</class>
+
+</hibernate-mapping>	
