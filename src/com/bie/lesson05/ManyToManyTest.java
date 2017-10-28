@@ -2,6 +2,7 @@ package com.bie.lesson05;
 
 import java.util.Set;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
@@ -232,6 +233,13 @@ public class ManyToManyTest {
 		
 		Dept dept = (Dept)session.load(Dept.class, 4);
 		System.out.println("=====================");
+		//方式一，关闭session之前使用一下
+		//dept.getDeptName();
+		//方式二，强迫代理对象初始化
+		Hibernate.initialize(dept);
+		//方式三，关闭懒加载
+		
+		
 		//提交事务
 		tx.commit();
 		//关闭session
