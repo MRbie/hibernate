@@ -3,7 +3,7 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.bie.lesson05">
-	<class name="Dept" table="20171021_dept"> 
+	<class name="Dept" table="20171021_dept" lazy="true"> 
 		<!-- 主键映射 -->
 		<id name="deptId" column="deptId">
 			<generator class="native"></generator>

@@ -223,5 +223,22 @@ public class ManyToManyTest {
 		//关闭session
 		HibernateUtils.closeSession();
 	}
+	
+	@Test
+	public void lazyTest(){
+		Session session = HibernateUtils.getSesion();
+		//开启事务
+		Transaction tx = session.beginTransaction();
+		
+		Dept dept = (Dept)session.load(Dept.class, 4);
+		System.out.println("=====================");
+		//提交事务
+		tx.commit();
+		//关闭session
+		//HibernateUtils.closeSession();
+		session.close();
+		
+		System.out.println(dept.getDeptName());
+	}
 		
 }
