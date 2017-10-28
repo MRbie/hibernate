@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+3：(推荐)每个子类映射一张表，父类不对应表(2张表)
+	所有的子类都写到一个映射文件，父类不对应表，每个子类对应一张表。
+	如果使用union-subclass主键生成策略中，主键不可以自增长。
+	abstract="true"是不对应表的含义。
+-->
+ 
+<!-- 继承映射 -->
+<hibernate-mapping package="com.bie.lesson10.extend04">
+	<class name="Animal" abstract="true">
+		<id name="animalId" column="animalId">
+			<generator class="uuid"></generator>
+		</id>
+		
+		<property name="animalName" column="animalName"></property>
+		
+	
+	
+		<!-- 
+			子类的属性，每个字段都用subClass节点映射
+		 -->
+		<!-- 
+			猫的字段
+				union-subclass的table指定为表名称，表的主键即为id列。
+		-->
+		<union-subclass name="Cat" table="20171028_cat04">
+			<property name="catchMouse"></property>
+		</union-subclass>
+		
+		
+		<!-- 猴子的字段 -->
+		<union-subclass name="Monkey" table="20171028_monkey04">
+			<property name="eatBanana"></property>
+		</union-subclass>
+
+	</class>
+</hibernate-mapping>
+
+	
