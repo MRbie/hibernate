@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.bie.lesson08">
+	<class name="IdCard" table="2017102802_idcard">
+		<!-- 
+            id节点指定的是主键映射，即id是主键
+            	主键生成方式：foreign即把别的表的主键作为当前表的主键，
+                property(关键字，不能修改)指定引用的对象==》对象的全名com.bie.domain.User==》
+                                         对象映射文件com.bie.domain.xml==》表table(id)
+         -->
+		<id name="userId" column="userId" >
+			<!-- 用户的外键做身份证号码的主键 -->
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+		
+		<property name="cardNumber" column="cardNumber" length="20"></property>
+		<property name="place" column="place" length="20"></property>
+		
+		<!-- 用户和身份证之间的对应关系 -->
+		<!-- 
+			一对一映射:由外键方
+				基于主键的映射
+				(1)一对一映射，有外键方
+            	(2)用户表的主键做身份证表的主键
+            	(3)constrained="true"设置外键
+		 -->
+		 <one-to-one name="user" class="User" constrained="true" cascade="save-update"></one-to-one>
+	</class>
+
+
+</hibernate-mapping>

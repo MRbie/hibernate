@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.bie.lesson08">
+	<class name="User" table="2017102802_user">
+		<id name="userId" column="userId">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="userName" column="userName" length="20"></property>
+		
+		<!-- 用户和身份证之间的对应关系 -->
+		<!-- 
+			一对一之间的映射:没有外键方
+				private IdCard idCard;//
+				name属性就是idCard;
+		 -->
+		<one-to-one name="idCard" class="IdCard"></one-to-one>
+		
+	</class>
+
+
+</hibernate-mapping>
