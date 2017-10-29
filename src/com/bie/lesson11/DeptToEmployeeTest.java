@@ -1,9 +1,5 @@
 package com.bie.lesson11;
 
-import java.util.List;
-import java.util.Set;
-
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -105,6 +101,20 @@ public class DeptToEmployeeTest {
 		HibernateUtils.closeSession();
 	}
 	
-	
+	@Test
+	public void HQL_other(){
+		Session session = HibernateUtils.getSesion();
+		//开启事务
+		Transaction tx = session.beginTransaction();
+		
+		//HQL语句写到配置文件中去
+		Query query = session.getNamedQuery("dept_hql");
+		query.setParameter(0, 10);
+		System.out.println(query.list());
+		
+		
+		tx.commit();
+		session.close();
+	}
 		
 }

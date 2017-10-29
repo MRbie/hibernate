@@ -60,6 +60,17 @@
 		 
 	</class>
 
+	
+	<!-- HQL语句写到配置文件中去 -->
+	<!-- <query name="dept_hql">
+		from Dept
+	</query> -->
+	<query name="dept_hql">
+		<![CDATA[
+			from Dept where deptId < ?
+		]]>
+	</query>
+	
 
 </hibernate-mapping>		
 	
