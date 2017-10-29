@@ -106,6 +106,24 @@
 		<property name="hibernate.c3p0.acquire_increment">2</property>
 		
 		
+		<!--****************** 【二级缓存配置】****************** -->
+		<!-- a.  开启二级缓存 -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<!-- b. 指定使用哪一个缓存框架(默认提供的) -->
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
+		<!-- 开启查询缓存 -->
+		<property name="hibernate.cache.use_query_cache">true</property>
+		
+		<mapping resource="com/bie/lesson11/Dept.hbm.xml"/>
+		<mapping resource="com/bie/lesson11/Employee.hbm.xml"/>
+		
+		
+		<!-- c. 指定哪一些类，需要加入二级缓存 -->
+		<class-cache usage="read-write" class="com.bie.lesson11.Dept"/>
+		<class-cache usage="read-only" class="com.bie.lesson11.Employee"/>
+		<!-- 集合缓存[集合缓存的元素对象，也加加入二级缓存] -->
+		<collection-cache usage="read-write" collection="com.bie.lesson11.Dept.emps"/>
+		
 		<!-- 3:第三部门，加载映射文件 -->
 		<!-- 加载所有的映射 -->
 		<!-- <mapping resource="com/bie/lesson01/employee.hbm.xml"/> -->
@@ -138,8 +156,9 @@
 		
 		<!-- <mapping resource="com/bie/lesson10/extend04/Animal.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson11/Dept.hbm.xml"/>
-		<mapping resource="com/bie/lesson11/Employee.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson11/Dept.hbm.xml"/>
+		<mapping resource="com/bie/lesson11/Employee.hbm.xml"/> -->
+		
 		
 		
 	</session-factory>
