@@ -85,7 +85,11 @@
 		
 		<!-- <mapping resource="com/bie/lesson10/extend03/Animal.hbm.xml"/> -->
 		
-		<mapping resource="com/bie/lesson10/extend04/Animal.hbm.xml"/>
+		<!-- <mapping resource="com/bie/lesson10/extend04/Animal.hbm.xml"/> -->
+		
+		<mapping resource="com/bie/lesson11/Dept.hbm.xml"/>
+		<mapping resource="com/bie/lesson11/Employee.hbm.xml"/>
+		
 		
 	</session-factory>
 	

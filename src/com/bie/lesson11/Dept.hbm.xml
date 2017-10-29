@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.bie.lesson11">
+	<class name="Dept" table="20171029_dept" lazy="true"> 
+		<!-- 主键映射 -->
+		<id name="deptId" column="deptId">
+			<generator class="native"></generator>
+		</id>
+		<!-- 非主键映射 -->
+		<property name="deptName" column="deptName" length="20"></property>
+		
+		<!-- 
+			一对多关联映射配置，通过部门管理到员工
+			Dept映射关键点：
+				1：指定映射的集合属性："emps"
+				2：集合属性对应的集合表："20171021_employee"
+				3：集合表的外键字段"20171021_employee.deptId"
+				4：集合元素的类型
+		 -->
+		 <!-- 
+		 	(a):inverse属性，是在维护关联关系的时候起作用的。
+		 		表示控制权是否转移。(在一的一方起作用)。
+		 		inverse=true,控制反转，反转,当前方没有控制权。
+		 		inverse=false,默认值，控制反转，不反转,当前方有控制权。
+		 		
+		 		
+		 	(b):维护关联关系中：
+		 		1：保存数据，设计关联。(对保存数据的关联关系存在影响)
+		 			通过部门进行保存信息。
+		 			如果设置控制反转，即inverse=true,然后通过部门维护关联关系。
+		 				在保存部门的时候，同时保存员工，数据会保存，但关联关系不会维护。
+		 				即外键字段为NULL；
+		 		2：获取数据。
+		 			是否存在控制权对获取数据没有影响。
+		 		3：解除关联关系。
+		 			是否存在控制权对解除关联关系有影响。
+		 		4：删除数据对关联关系的影响。	
+		 			是否存在控制权对删除数据存在影响。
+		 			存在控制权的时候可以删除，先清空外键引用，再删除数据。
+		 			没有控制权，如果删除的记录有被外键引用，会报错，违反主外键应用约束。
+		 					  如果删除的记录没有被引用，可以直接删除。
+		  -->
+		  <!-- 
+		  	cascade属性
+		  		cascade表示级联操作，可以设置到一的一方或者多的一方。
+		  		none:不级联操作，默认值
+		  		save-update:级联或者或则更新
+		  		delete:级联删除
+		  		save-update,delete:级联保存，更新，删除
+		  		all:级联保存，更新，删除
+		   -->
+		 <set name="emps" cascade="delete" inverse="false" table="20171021_employee">
+		 	<!-- 集合表的外键字段 -->
+		 	<key column="deptId"></key>
+		 	<!-- 集合元素的类型 class=com.bie.lesson05.Employee-->
+		 	<one-to-many class="Employee"/>
+		 </set>
+		 
+	</class>
+
+
+</hibernate-mapping>		
+	
